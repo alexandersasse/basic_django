@@ -1,7 +1,7 @@
 # Basic Django
 
 - Creating project and apps
-- Redirecting URLS to apps
+- Mapping URLS to apps and specific views
 - Reading from models (without database)
 - Retrieving and displaying data in views with some basic HTML
 
