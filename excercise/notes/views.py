@@ -33,6 +33,7 @@ def sections(request):
 
 def slug_query(request, text_passed):
     content = ""
+    keyword = ""
     ### Finding fitting endpoint & generate respective data
     if text_passed == "webframeworks": keyword = "Web Frameworks"
     if text_passed == "settingupdjango": keyword = "Setting up Django"
@@ -44,8 +45,11 @@ def slug_query(request, text_passed):
         if data["section"] == keyword:
             content += f"<li>{data['text']}</li>"
     ### Return
-    return HttpResponse(f"{title}<ol>{content}</ol>{home}")
-    
+    if content == "":
+        return HttpResponse(f"<h2>You are looking for: {text_passed}</h2><p>There is no data for it.</p>{home}")
+    else:
+        return HttpResponse(f"{title}<ol>{content}</ol>{home}")
+
 def position_query(request, position):
     ### Retrieving data from models.py
     data_from_notes_in_models = notes[position - 1]
